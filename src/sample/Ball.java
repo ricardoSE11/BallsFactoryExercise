@@ -5,7 +5,8 @@ import javafx.scene.image.Image;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-public class Ball extends Thread implements IBall{
+public class Ball extends Thread implements IPrototype<Ball>,
+        IBall{
 
     private double x_position;
     private double y_position;
@@ -17,6 +18,8 @@ public class Ball extends Thread implements IBall{
 
     int x_range = (5 - 1) + 1;
     int y_range = (3 - 1) + 1;
+
+    public Ball(){}
 
     public Ball(int speed, Color color, Direction direction) {
         this.x_position = 70 * ((Math.random() * x_range) + 1);
@@ -93,6 +96,18 @@ public class Ball extends Thread implements IBall{
 
     public void setMoving(boolean moving) {
         isMoving = moving;
+    }
+
+    @Override
+    public Ball clone(){
+        Ball clone = new Ball(this.speed,this.color,
+                this.direction,this.image);
+        return clone;
+    }
+
+    @Override
+    public Ball deepClone(){
+        return clone();
     }
 
     @Override

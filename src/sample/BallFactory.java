@@ -4,8 +4,11 @@ import javafx.scene.image.Image;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.HashMap;
 
 public class BallFactory {
+    private static HashMap<String,IPrototype> prototypes =
+            new HashMap<>();
 
     public BallFactory(){
         System.out.println(" --- Instantiated a Ball Factory --- ");
@@ -43,4 +46,14 @@ public class BallFactory {
 
         return ball;
     }
+
+    public static IPrototype getPrototype(String prototypeName){
+        return prototypes.get(prototypeName).deepClone();
+    }
+
+    public static void addPrototype(String prototypeName,
+                                    IPrototype prototype){
+        prototypes.put(prototypeName,prototype);
+    }
+
 }
