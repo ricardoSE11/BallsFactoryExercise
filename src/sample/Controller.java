@@ -185,8 +185,6 @@ public class Controller implements Initializable {
         String choosenColor = cmb_color.getValue().toString();
         String choosenDirection = cmb_direction.getValue().toString();
 
-        System.out.println("I AM BEING USED");
-
         current_ball_amount = Integer.parseInt(txf_ball_amount.getText());
         current_ball_speed = Integer.parseInt(txf_balls_speed.getText());
 
@@ -222,20 +220,27 @@ public class Controller implements Initializable {
         }
 
         int current_total_balls = factory.balls.size();
-        if(current_total_balls < current_ball_amount){
-            int missingBalls = current_ball_amount - current_total_balls;
+        int missingBalls = current_ball_amount - current_total_balls;
+        if(missingBalls > 0){
             for (int i = 0 ; i < missingBalls ; i++){
                 Ball newBall = factory.createBall(current_ball_speed , ball_color ,direction);
                 newBall.start();
             }
-        }
-        if(current_total_balls > 0){
+            if(current_total_balls > 0){
+                ArrayList<Ball> newBalls = factory.getPrototype(current_ball_speed,
+                        ball_color,direction,current_total_balls);
+                for(Ball ball : newBalls){
+                    ball.start();
+                }
+            }
+        }else{
             ArrayList<Ball> newBalls = factory.getPrototype(current_ball_speed,
                     ball_color,direction,current_ball_amount);
             for(Ball ball : newBalls){
                 ball.start();
             }
         }
+
 
     }
 
