@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.canvas.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+
+<SplitPane fx:id="main_panel" dividerPositions="0.7704545454545455" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="467.0" prefWidth="540.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+         <children>
+            <Canvas fx:id="balls_canvas" height="326.0" layoutX="14.0" layoutY="16.0" width="504.0" />
+         </children></AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="90.0" prefWidth="430.0">
+         <children>
+            <Button fx:id="btn_factory" layoutX="261.0" layoutY="20.0" mnemonicParsing="false" onAction="#createBallsWithFactory" prefHeight="25.0" prefWidth="138.0" text="Factory " />
+            <Button fx:id="btn_no_pattern" layoutX="261.0" layoutY="65.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="138.0" text="No pattern" />
+            <TextField fx:id="txf_ball_amount" layoutX="14.0" layoutY="14.0" prefHeight="37.0" prefWidth="109.0" promptText="Amount of balls" />
+            <TextField fx:id="txf_balls_speed" layoutX="134.0" layoutY="14.0" prefHeight="37.0" prefWidth="109.0" promptText="Speed of the balls" />
+            <ComboBox fx:id="cmb_color" layoutX="14.0" layoutY="62.0" prefHeight="31.0" prefWidth="109.0" promptText="Color" />
+            <ComboBox fx:id="cmb_direction" layoutX="134.0" layoutY="62.0" prefHeight="31.0" prefWidth="109.0" promptText="Direction" />
+            <Button fx:id="btn_move" layoutX="423.0" layoutY="20.0" mnemonicParsing="false" onAction="#initializeThreads" prefHeight="63.0" prefWidth="85.0" text="Move" />
+         </children></AnchorPane>
+  </items>
+</SplitPane>
