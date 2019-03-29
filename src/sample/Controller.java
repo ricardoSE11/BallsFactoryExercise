@@ -86,7 +86,7 @@ public class Controller implements Initializable {
     //TODO: Recordar que el start() es mágico y evita que la GUI se pegue :)
 
     public void createBallsWithFactory(){
-        BallFactory factory = new BallFactory();
+        BallFactory factory = BallFactory.getSingletonFactoryInstance();
         String choosenColor = cmb_color.getValue().toString();
         String choosenDirection = cmb_direction.getValue().toString();
 
