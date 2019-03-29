@@ -23,6 +23,8 @@
             <TextField fx:id="txf_balls_speed" layoutX="134.0" layoutY="14.0" prefHeight="37.0" prefWidth="109.0" promptText="Speed of the balls" />
             <ComboBox fx:id="cmb_color" layoutX="14.0" layoutY="62.0" prefHeight="31.0" prefWidth="109.0" promptText="Color" />
             <ComboBox fx:id="cmb_direction" layoutX="134.0" layoutY="62.0" prefHeight="31.0" prefWidth="109.0" promptText="Direction" />
+
+             <Button fx:id="btn_prototype" layoutX="350.0" layoutY="20.0" mnemonicParsing="false" onAction="#createBallsWithPrototype" prefHeight="25.0" prefWidth="138.0" text="Prototype " />
          </children></AnchorPane>
   </items>
 </SplitPane>
