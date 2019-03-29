@@ -29,6 +29,7 @@ public class Controller implements Initializable {
     private Direction direction;
 
     private ArrayList<Ball> existing_balls;
+    private BallFactory factory = new BallFactory();
 
     // Utility vars
     private Random random;
@@ -86,7 +87,6 @@ public class Controller implements Initializable {
     //TODO: Recordar que el start() es mágico y evita que la GUI se pegue :)
 
     public void createBallsWithFactory(){
-        BallFactory factory = BallFactory.getSingletonFactoryInstance();
         String choosenColor = cmb_color.getValue().toString();
         String choosenDirection = cmb_direction.getValue().toString();
 
@@ -124,7 +124,6 @@ public class Controller implements Initializable {
 
         for (int i = 0 ; i < current_ball_amount ; i++){
             Ball newBall = factory.createBall(current_ball_speed , ball_color ,direction);
-            existing_balls.add(newBall);
             newBall.start();
         }
 
@@ -177,24 +176,65 @@ public class Controller implements Initializable {
         for (int i = 0 ; i < current_ball_amount ; i++){
             Ball newBall = new Ball(current_ball_speed , ball_color , direction , choosenImage);
 
-            existing_balls.add(newBall);
+            this.factory.balls.add(newBall);
             newBall.start();
         }
     }
 
     public void createBallsWithPrototype(){
-        BallFactory factory = BallFactory.getSingletonFactoryInstance();
         String choosenColor = cmb_color.getValue().toString();
         String choosenDirection = cmb_direction.getValue().toString();
-        String prototypeKey = choosenColor+choosenDirection;
 
         System.out.println("I AM BEING USED");
-        BallListImpl cloneBalls = (BallListImpl)
-                factory.getPrototype(prototypeKey);
 
-        for(Ball ball : cloneBalls.getBalls()){
-            existing_balls.add(ball);
-            ball.start();
+        current_ball_amount = Integer.parseInt(txf_ball_amount.getText());
+        current_ball_speed = Integer.parseInt(txf_balls_speed.getText());
+
+        switch (choosenDirection){
+            case "Up":
+                this.direction = Direction.UP;
+                break;
+
+            case "Down":
+                this.direction = Direction.DOWN;
+                break;
+
+            case "Right":
+                this.direction = Direction.RIGHT;
+                break;
+
+            case "Left":
+                this.direction = Direction.LEFT;
+                break;
+        }
+
+
+        switch (choosenColor){
+            case "Red":
+                this.ball_color = Color.RED;
+                this.choosenImage = redBallImage;
+                break;
+
+            case "Blue":
+                this.ball_color = Color.BLUE;
+                this.choosenImage = blueBallImage;
+                break;
+        }
+
+        int current_total_balls = factory.balls.size();
+        if(current_total_balls < current_ball_amount){
+            int missingBalls = current_ball_amount - current_total_balls;
+            for (int i = 0 ; i < missingBalls ; i++){
+                Ball newBall = factory.createBall(current_ball_speed , ball_color ,direction);
+                newBall.start();
+            }
+        }
+        if(current_total_balls > 0){
+            ArrayList<Ball> newBalls = factory.getPrototype(current_ball_speed,
+                    ball_color,direction,current_ball_amount);
+            for(Ball ball : newBalls){
+                ball.start();
+            }
         }
 
     }
@@ -206,7 +246,8 @@ public class Controller implements Initializable {
         gContext.clearRect(0 , 0 , 504 , 326);
         gContext.drawImage(backgroundImage , 0 , 0);
 
-        for (Ball currentBall : this.existing_balls){
+        for (int i = 0; i < this.factory.balls.size(); i++){
+            Ball currentBall = (Ball)this.factory.balls.get(i);
             gContext.drawImage(currentBall.getImage() , currentBall.getX_position() , currentBall.getY_position());
         }
     }
