@@ -17,14 +17,14 @@
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="90.0" prefWidth="430.0">
          <children>
-            <Button fx:id="btn_factory" layoutX="261.0" layoutY="20.0" mnemonicParsing="false" onAction="#createBallsWithFactory" prefHeight="25.0" prefWidth="138.0" text="Factory " />
-            <Button fx:id="btn_no_pattern" layoutX="261.0" layoutY="65.0" mnemonicParsing="false" onAction="#createBallWithNoPattern" prefHeight="25.0" prefWidth="138.0" text="No pattern" />
+            <Button fx:id="btn_factory" layoutX="261.0" layoutY="17.0" mnemonicParsing="false" onAction="#createBallsWithFactory" prefHeight="31.0" prefWidth="138.0" text="Factory " />
+            <Button fx:id="btn_no_pattern" layoutX="413.0" layoutY="20.0" mnemonicParsing="false" onAction="#createBallWithNoPattern" prefHeight="67.0" prefWidth="109.0" text="No pattern" />
             <TextField fx:id="txf_ball_amount" layoutX="14.0" layoutY="14.0" prefHeight="37.0" prefWidth="109.0" promptText="Amount of balls" />
             <TextField fx:id="txf_balls_speed" layoutX="134.0" layoutY="14.0" prefHeight="37.0" prefWidth="109.0" promptText="Speed of the balls" />
             <ComboBox fx:id="cmb_color" layoutX="14.0" layoutY="62.0" prefHeight="31.0" prefWidth="109.0" promptText="Color" />
             <ComboBox fx:id="cmb_direction" layoutX="134.0" layoutY="62.0" prefHeight="31.0" prefWidth="109.0" promptText="Direction" />
 
-             <Button fx:id="btn_prototype" layoutX="350.0" layoutY="20.0" mnemonicParsing="false" onAction="#createBallsWithPrototype" prefHeight="25.0" prefWidth="138.0" text="Prototype " />
+             <Button fx:id="btn_prototype" layoutX="261.0" layoutY="59.0" mnemonicParsing="false" onAction="#createBallsWithPrototype" prefHeight="31.0" prefWidth="138.0" text="Prototype " />
          </children></AnchorPane>
   </items>
 </SplitPane>

@@ -187,9 +187,11 @@ public class Controller implements Initializable {
         String choosenColor = cmb_color.getValue().toString();
         String choosenDirection = cmb_direction.getValue().toString();
         String prototypeKey = choosenColor+choosenDirection;
+
         System.out.println("I AM BEING USED");
         BallListImpl cloneBalls = (BallListImpl)
                 factory.getPrototype(prototypeKey);
+
         for(Ball ball : cloneBalls.getBalls()){
             existing_balls.add(ball);
             ball.start();

@@ -52,7 +52,6 @@ public class BallFactory {
     public Ball createBall(int speed, Color color, Direction direction){
         Ball ball = null;
 
-
         switch (color){
             case RED:
                 ball = new Ball(speed,color,direction);
@@ -144,12 +143,14 @@ public class BallFactory {
     public IPrototype getPrototype(String prototypeName){
         BallListImpl cloneBalls = (BallListImpl)
                 prototypes.get(prototypeName).deepClone();
-        BallListImpl currentBalls = (BallListImpl)
-                prototypes.get(prototypeName);
-        for(Ball ball : cloneBalls.getBalls()){
-            currentBalls.addBall(ball);
-        }
-        prototypes.replace(prototypeName,currentBalls);
+
+//        BallListImpl currentBalls = (BallListImpl)
+//                prototypes.get(prototypeName);
+//
+//        for(Ball ball : cloneBalls.getBalls()){
+//            currentBalls.addBall(ball);
+//        }
+//        prototypes.replace(prototypeName,currentBalls);
         return cloneBalls;
     }
 

@@ -35,7 +35,7 @@ public class Main extends Application implements Runnable{
         launch(args);
     }
 
-    // Method to refresh page (?)
+    // Method to refresh page
     @Override
     public void run() {
         long start;
@@ -47,9 +47,9 @@ public class Main extends Application implements Runnable{
         while(true){
             try {
                 //System.out.println(" --- Hilo consume recursos ---");
-                start=System.nanoTime();
-                elapsed=System.nanoTime()-start;
-                wait = time-elapsed/1000000; //1000000
+                start = System.nanoTime();
+                elapsed = System.nanoTime()- start;
+                wait = time - elapsed / 1000000;
                 Thread.sleep(wait);
                 myController.draw();
             }
