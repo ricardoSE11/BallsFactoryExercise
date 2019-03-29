@@ -27,6 +27,18 @@ public class Ball extends Thread implements IBall{
         this.isMoving = true;
     }
 
+    public Ball(int speed, Color color, Direction direction , Image asset) {
+        this.x_position = 70 * ((Math.random() * x_range) + 1);
+        this.y_position = 60 * ((Math.random() * y_range) + 1);
+        this.speed = speed;
+        this.color = color;
+        this.direction = direction;
+        this.isMoving = true;
+
+        this.image = asset;
+    }
+
+
     public double getX_position() {
         return x_position;
     }

@@ -38,9 +38,15 @@ public class Controller implements Initializable {
     GraphicsContext gContext;
     Image backgroundImage;
 
+    Image redBallImage;
+    Image blueBallImage;
+    Image choosenImage;
+
     {
         try {
             backgroundImage = new Image(new FileInputStream("src/Assets/background.png"));
+            redBallImage = new Image(new FileInputStream("src/Assets/image_circle_red.png"));
+            blueBallImage = new Image(new FileInputStream("src/Assets/image_circle_blue.png"));
         }
         catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -55,7 +61,6 @@ public class Controller implements Initializable {
 
     @FXML public Button btn_factory;
     @FXML public Button btn_no_pattern;
-    @FXML public Button btn_move;
 
     @FXML public Canvas balls_canvas;
 
@@ -78,12 +83,7 @@ public class Controller implements Initializable {
 
     }
 
-    //TODO: Agregar validación
-    public void initializeThreads(){
-        for (Ball currentBall : existing_balls){
-            currentBall.start(); //TODO: Recordar que el start() es mágico y evita que la GUI se pegue :)
-        }
-    }
+    //TODO: Recordar que el start() es mágico y evita que la GUI se pegue :)
 
     public void createBallsWithFactory(){
         BallFactory factory = new BallFactory();
@@ -133,7 +133,54 @@ public class Controller implements Initializable {
         //txf_balls_speed.setText(" ");
     }
 
-    public void createBallWithNoPattern(){}
+    public void createBallWithNoPattern(){
+        String choosenColor = cmb_color.getValue().toString();
+        String choosenDirection = cmb_direction.getValue().toString();
+
+        System.out.println("I AM BEING USED");
+
+        current_ball_amount = Integer.parseInt(txf_ball_amount.getText());
+        current_ball_speed = Integer.parseInt(txf_balls_speed.getText());
+
+        switch (choosenDirection){
+            case "Up":
+                this.direction = Direction.UP;
+                break;
+
+            case "Down":
+                this.direction = Direction.DOWN;
+                break;
+
+            case "Right":
+                this.direction = Direction.RIGHT;
+                break;
+
+            case "Left":
+                this.direction = Direction.LEFT;
+                break;
+        }
+
+
+        switch (choosenColor){
+            case "Red":
+                this.ball_color = Color.RED;
+                this.choosenImage = redBallImage;
+                break;
+
+            case "Blue":
+                this.ball_color = Color.BLUE;
+                this.choosenImage = blueBallImage;
+                break;
+        }
+
+
+        for (int i = 0 ; i < current_ball_amount ; i++){
+            Ball newBall = new Ball(current_ball_speed , ball_color , direction , choosenImage);
+
+            existing_balls.add(newBall);
+            newBall.start();
+        }
+    }
 
     public void draw(){
         balls_canvas.setWidth(504);
